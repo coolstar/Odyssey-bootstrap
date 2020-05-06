@@ -10,17 +10,26 @@ echo "chimera1n deployment script"
 echo "(C) 2020, CoolStar. All Rights Reserved"
 
 echo ""
-echo "Before you begin: Please make sure your checkra1n device has been rootfs restored and that Loader has not been run on it"
-read -p "Press enter to continue"
+echo -e "\033[1;31mBefore you begin: \033[0mPlease make sure your checkra1n device has been rootfs restored \nand that Loader has not been run on it.\n"
+
+while true; do
+    read -p "Do you want to continue? Type h/H to get help on how restore rootfs. " ynh
+    case $ynh in
+        [Yy]* ) break;;
+        [Nn]* ) exit;;
+		[Hh]* ) echo -e "To restore your rootFS: \n1.Open the Loader/Checkra1n app on your device \n2.Tap on \"Restore system\" \n3.Tap \"Restore system\" again as a confirmation ";;
+        * ) echo "Please answer either Yes, No, or H.";;
+    esac
+done
 
 if ! which curl >> /dev/null; then
-	echo "Error: curl not found"
+	echo "033[1;31mError:\033[0m curl not found"
 	exit 1
 fi
 if which iproxy >> /dev/null; then
 	iproxy 4444 44 >> /dev/null 2>/dev/null &
 else
-	echo "Error: iproxy not found"
+	echo -e "\033[1;31mError:\033[0m iproxy not found"
 	exit 1
 fi
 rm -rf chimera-tmp
