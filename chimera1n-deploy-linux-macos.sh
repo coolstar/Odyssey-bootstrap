@@ -75,11 +75,11 @@ curl -L -O https://github.com/coolstar/Chimera-bootstrap/raw/master/bootstrap.ta
 clear
 echo "Copying Files to your device"
 echo "Default password is: alpine"
-scp -P4444 bootstrap.tar.gz launchctl.gz cydia_2.3_iphoneos-arm.deb org.coolstar.sileo_1.7.4_iphoneos-arm.deb chimera-device-deploy.sh root@127.0.0.1:/var/root/
+scp -P4444 -o "StrictHostKeyChecking no" -o "UserKnownHostsFile=/dev/null" bootstrap.tar.gz launchctl.gz cydia_2.3_iphoneos-arm.deb org.coolstar.sileo_1.7.4_iphoneos-arm.deb chimera-device-deploy.sh root@127.0.0.1:/var/root/
 clear
 echo "Installing Chimera bootstrap and Sileo on your device"
 echo "Default password is: alpine"
-ssh -p4444 root@127.0.0.1 "bash /var/root/chimera-device-deploy.sh"
+ssh -p4444 -o "StrictHostKeyChecking no" -o "UserKnownHostsFile=/dev/null" root@127.0.0.1 "bash /var/root/chimera-device-deploy.sh"
 clear
 echo "All Done!"
 killall iproxy
