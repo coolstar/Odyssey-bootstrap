@@ -52,7 +52,7 @@ echo 'echo "URIs: https://repo.chimera.sh/" >> /etc/apt/sources.list.d/chimera.s
 echo 'echo "Suites: ./" >> /etc/apt/sources.list.d/chimera.sources' >> chimera-device-deploy.sh
 echo 'echo "Components: " >> /etc/apt/sources.list.d/chimera.sources' >> chimera-device-deploy.sh
 echo 'echo "" >> /etc/apt/sources.list.d/chimera.sources' >> chimera-device-deploy.sh
-echo 'PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/bin/X11:/usr/games dpkg -i cydia_2.3_iphoneos-arm.deb org.coolstar.sileo_1.7.4_iphoneos-arm.deb' >> chimera-device-deploy.sh
+echo 'PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/bin/X11:/usr/games dpkg -i cydia_2.3_iphoneos-arm.deb org.coolstar.sileo_1.7.6_iphoneos-arm.deb' >> chimera-device-deploy.sh
 echo 'echo -n "" > /var/lib/dpkg/available' >> chimera-device-deploy.sh
 echo '/Library/dpkg/info/openssh.postinst' >> chimera-device-deploy.sh
 echo '/Library/dpkg/info/profile.d.postinst' >> chimera-device-deploy.sh
@@ -67,15 +67,15 @@ echo 'touch /.bootstrapped' >> chimera-device-deploy.sh
 echo 'rm bootstrap.tar' >> chimera-device-deploy.sh
 echo 'rm cydia_2.3_iphoneos-arm.deb' >> chimera-device-deploy.sh
 echo 'rm launchctl' >> chimera-device-deploy.sh
-echo 'rm org.coolstar.sileo_1.7.4_iphoneos-arm.deb' >> chimera-device-deploy.sh
+echo 'rm org.coolstar.sileo_1.7.6_iphoneos-arm.deb' >> chimera-device-deploy.sh
 echo 'rm chimera-device-deploy.sh' >> chimera-device-deploy.sh
 
 echo "Downloading Resources..."
-curl -L -O https://github.com/coolstar/Chimera-bootstrap/raw/master/bootstrap.tar.gz -O https://github.com/coolstar/Chimera-bootstrap/raw/master/launchctl.gz -O https://github.com/coolstar/Chimera-bootstrap/raw/master/cydia_2.3_iphoneos-arm.deb -O https://github.com/coolstar/Chimera-bootstrap/raw/master/org.coolstar.sileo_1.7.4_iphoneos-arm.deb
+curl -L -O https://github.com/coolstar/Chimera-bootstrap/raw/master/bootstrap.tar.gz -O https://github.com/coolstar/Chimera-bootstrap/raw/master/launchctl.gz -O https://github.com/coolstar/Chimera-bootstrap/raw/master/cydia_2.3_iphoneos-arm.deb -O https://github.com/coolstar/Chimera-bootstrap/raw/master/org.coolstar.sileo_1.7.6_iphoneos-arm.deb
 clear
 echo "Copying Files to your device"
 echo "Default password is: alpine"
-scp -P4444 -o "StrictHostKeyChecking no" -o "UserKnownHostsFile=/dev/null" bootstrap.tar.gz launchctl.gz cydia_2.3_iphoneos-arm.deb org.coolstar.sileo_1.7.4_iphoneos-arm.deb chimera-device-deploy.sh root@127.0.0.1:/var/root/
+scp -P4444 -o "StrictHostKeyChecking no" -o "UserKnownHostsFile=/dev/null" bootstrap.tar.gz launchctl.gz cydia_2.3_iphoneos-arm.deb org.coolstar.sileo_1.7.6_iphoneos-arm.deb chimera-device-deploy.sh root@127.0.0.1:/var/root/
 clear
 echo "Installing Chimera bootstrap and Sileo on your device"
 echo "Default password is: alpine"
