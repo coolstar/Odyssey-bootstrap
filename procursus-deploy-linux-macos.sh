@@ -43,13 +43,14 @@ if [[ ! "${ARM}" = yes ]]; then
 fi
 echo 'if [[ -f "/.bootstrapped" ]]; then' >> odyssey-device-deploy.sh
 echo 'mkdir -p /odyssey && mv migration /odyssey' >> odyssey-device-deploy.sh
+echo 'chmod 0755 /odyssey/migration' >> odyssey-device-deploy.sh
 echo '/odyssey/migration' >> odyssey-device-deploy.sh
-echo 'rm -rf /odyssey/migration' >> odyssey-device-deploy.sh
+echo 'rm -rf /odyssey' >> odyssey-device-deploy.sh
 echo 'else' >> odyssey-device-deploy.sh
 echo 'VER=$(/binpack/usr/bin/plutil -key ProductVersion /System/Library/CoreServices/SystemVersion.plist)' >> odyssey-device-deploy.sh
-echo 'if [[ "${VER}" -ge 12 ]] && [[ "${VER}" -lt 13 ]]; then' >> odyssey-device-deploy.sh
+echo 'if [[ "${VER%.*}" -ge 12 ]] && [[ "${VER%.*}" -lt 13 ]]; then' >> odyssey-device-deploy.sh
 echo 'CFVER=1500' >> odyssey-device-deploy.sh
-echo 'elif [[ "${VER}" -ge 13 ]]; then' >> odyssey-device-deploy.sh
+echo 'elif [[ "${VER%.*}" -ge 13 ]]; then' >> odyssey-device-deploy.sh
 echo 'CFVER=1600' >> odyssey-device-deploy.sh
 echo 'else' >> odyssey-device-deploy.sh
 echo 'echo "${VER} not compatible."' >> odyssey-device-deploy.sh
@@ -84,7 +85,7 @@ echo 'echo "Components: " >> /etc/apt/sources.list.d/odyssey.sources' >> odyssey
 echo 'echo "" >> /etc/apt/sources.list.d/odyssey.sources' >> odyssey-device-deploy.sh
 echo 'mkdir -p /etc/apt/preferenced.d/' >> odyssey-device-deploy.sh
 echo 'echo "Package: *" > /etc/apt/preferenced.d/odyssey' >> odyssey-device-deploy.sh
-echo 'echo "Pin: release o="Odyssey Repo" >> /etc/apt/preferenced.d/odyssey' >> odyssey-device-deploy.sh
+echo 'echo "Pin: release o="Odyssey Repo"" >> /etc/apt/preferenced.d/odyssey' >> odyssey-device-deploy.sh
 echo 'echo "Pin-Priority: 1001" >> /etc/apt/preferenced.d/odyssey' >> odyssey-device-deploy.sh
 echo 'echo "" >> /etc/apt/preferenced.d/odyssey' >> odyssey-device-deploy.sh
 echo 'PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/bin/X11:/usr/games dpkg -i org.coolstar.sileo_1.7.6_iphoneos-arm.deb' >> odyssey-device-deploy.sh
