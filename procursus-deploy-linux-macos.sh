@@ -88,24 +88,23 @@ echo 'echo "Package: *" > /etc/apt/preferenced.d/odyssey' >> odyssey-device-depl
 echo 'echo "Pin: release o="Odyssey Repo"" >> /etc/apt/preferenced.d/odyssey' >> odyssey-device-deploy.sh
 echo 'echo "Pin-Priority: 1001" >> /etc/apt/preferenced.d/odyssey' >> odyssey-device-deploy.sh
 echo 'echo "" >> /etc/apt/preferenced.d/odyssey' >> odyssey-device-deploy.sh
-echo 'PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/bin/X11:/usr/games dpkg -i org.coolstar.sileo_1.7.6_iphoneos-arm.deb' >> odyssey-device-deploy.sh
+echo 'PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/bin/X11:/usr/games dpkg -i org.coolstar.sileo_1.8.1_iphoneos-arm.deb' >> odyssey-device-deploy.sh
 echo 'uicache -p /Applications/Sileo.app' >> odyssey-device-deploy.sh
 echo 'echo -n "" > /var/lib/dpkg/available' >> odyssey-device-deploy.sh
 echo '/Library/dpkg/info/profile.d.postinst' >> odyssey-device-deploy.sh
 echo 'touch /.mount_rw' >> odyssey-device-deploy.sh
 echo 'touch /.installed_odyssey' >> odyssey-device-deploy.sh
 echo 'rm bootstrap*.tar*' >> odyssey-device-deploy.sh
-echo 'rm migration' >> odyssey-device-deploy.sh
-echo 'rm org.coolstar.sileo_1.7.6_iphoneos-arm.deb' >> odyssey-device-deploy.sh
+echo 'rm org.coolstar.sileo_1.8.1_iphoneos-arm.deb' >> odyssey-device-deploy.sh
 echo 'rm odyssey-device-deploy.sh' >> odyssey-device-deploy.sh
 
 echo "Downloading Resources..."
-curl -L -O https://github.com/coolstar/odyssey-bootstrap/raw/master/bootstrap_1500-ssh.tar.gz -O https://github.com/coolstar/odyssey-bootstrap/raw/master/bootstrap_1600-ssh.tar.gz -O https://github.com/coolstar/odyssey-bootstrap/raw/master/migration -O https://github.com/coolstar/odyssey-bootstrap/raw/master/org.coolstar.sileo_1.7.6_iphoneos-arm.deb
+curl -L -O https://github.com/coolstar/odyssey-bootstrap/raw/master/bootstrap_1500-ssh.tar.gz -O https://github.com/coolstar/odyssey-bootstrap/raw/master/bootstrap_1600-ssh.tar.gz -O https://github.com/coolstar/odyssey-bootstrap/raw/master/migration -O https://github.com/coolstar/odyssey-bootstrap/raw/master/org.coolstar.sileo_1.8.1_iphoneos-arm.deb
 clear
 if [[ ! "${ARM}" = yes ]]; then
 	echo "Copying Files to your device"
 	echo "Default password is: alpine"
-	scp -P4444 -o "StrictHostKeyChecking no" -o "UserKnownHostsFile=/dev/null" bootstrap_1500-ssh.tar.gz bootstrap_1600-ssh.tar.gz migration org.coolstar.sileo_1.7.6_iphoneos-arm.deb odyssey-device-deploy.sh root@127.0.0.1:/var/root/
+	scp -P4444 -o "StrictHostKeyChecking no" -o "UserKnownHostsFile=/dev/null" bootstrap_1500-ssh.tar.gz bootstrap_1600-ssh.tar.gz migration org.coolstar.sileo_1.8.1_iphoneos-arm.deb odyssey-device-deploy.sh root@127.0.0.1:/var/root/
 	clear
 fi
 echo "Installing Procursus bootstrap and Sileo on your device"
