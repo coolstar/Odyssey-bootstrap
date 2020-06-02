@@ -85,7 +85,7 @@ echo 'echo "Components: " >> /etc/apt/sources.list.d/odyssey.sources' >> odyssey
 echo 'echo "" >> /etc/apt/sources.list.d/odyssey.sources' >> odyssey-device-deploy.sh
 echo 'mkdir -p /etc/apt/preferenced.d/' >> odyssey-device-deploy.sh
 echo 'echo "Package: *" > /etc/apt/preferenced.d/odyssey' >> odyssey-device-deploy.sh
-echo 'echo "Pin: release o="Odyssey Repo"" >> /etc/apt/preferenced.d/odyssey' >> odyssey-device-deploy.sh
+echo 'echo "Pin: release n=odyssey-ios" >> /etc/apt/preferenced.d/odyssey' >> odyssey-device-deploy.sh
 echo 'echo "Pin-Priority: 1001" >> /etc/apt/preferenced.d/odyssey' >> odyssey-device-deploy.sh
 echo 'echo "" >> /etc/apt/preferenced.d/odyssey' >> odyssey-device-deploy.sh
 echo 'PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/bin/X11:/usr/games dpkg -i org.coolstar.sileo_1.8.1_iphoneos-arm.deb' >> odyssey-device-deploy.sh
