@@ -43,7 +43,7 @@ else
 		if which python > /dev/null 2>&1; then
 		echo "Python 2 was not found. Please install Python 2 through your Linux distribution's package manager, then run the script again."
 		else
-			python2 tcprelay.py 4444:44
+			python2 tcprelay.py 4444:44 >> /dev/null
 		fi
 	fi
 fi
