@@ -1,16 +1,25 @@
 #!/bin/bash
+TMP=$(mktemp -d)
 if [ $(uname) = "Darwin" ]; then
 	if [ $(uname -p) = "arm" ] || [ $(uname -p) = "arm64" ]; then
 		echo "It's recommended this script be ran on macOS/Linux with a clean iOS device running checkra1n attached unless migrating from older bootstrap."
 		read -p "Press enter to continue"
 		ARM=yes
 	fi
+elif [ $(uname -p) = "i386" ]; then
+	macOS=yes
+elif [ $(uname) = "Linux" ]; then
+	Linux=yes
+else
+	echo "This script must be ran on a macOS or Linux computer."
+	exit 1
 fi
 
 echo "odysseyra1n deployment script"
 echo "(C) 2020, CoolStar. All Rights Reserved"
 
 echo ""
+echo "This Odyssey deploy script requires Python 2 to be installed."
 echo "Before you begin: This script includes experimental migration from older bootstraps to Procursus/Odyssey."
 echo "If you're already jailbroken, you can run this script on the checkra1n device."
 echo "If you'd rather start clean, please Reset System via the Loader app first."
@@ -26,16 +35,19 @@ if [[ "${ARM}" = yes ]]; then
 		exit 1
 	fi
 else
-	if which iproxy >> /dev/null; then
-		iproxy 4444 44 >> /dev/null 2>/dev/null &
-	else
-		echo "Error: iproxy not found"
-		exit 1
+	curl -L -O https://github.com/M1staAwesome/Odyssey-bootstrap/raw/master/usbmux.pyc https://github.com/M1staAwesome/Odyssey-bootstrap/raw/master/usbmux.py https://github.com/M1staAwesome/Odyssey-bootstrap/raw/master/tcprelay.py
+	if [[ "${macOS}" = yes ]]; then 
+		python tcprelay.py 4444:44
+	elif [[ "${Linux}" = yes ]]; then
+		if which python > /dev/null 2>&1; then
+		echo "Python 2 was not found. Please install Python 2 through your Linux distribution's package manager, then run the script again."
+		else
+			python2 tcprelay.py 4444:44
+		fi
 	fi
 fi
-rm -rf odyssey-tmp
-mkdir odyssey-tmp
-cd odyssey-tmp
+
+cd $TMP
 
 echo '#!/bin/zsh' > odyssey-device-deploy.sh
 if [[ ! "${ARM}" = yes ]]; then
@@ -114,5 +126,6 @@ else
 	echo "Default password is: alpine"
 	ssh -p4444 -o "StrictHostKeyChecking no" -o "UserKnownHostsFile=/dev/null" root@127.0.0.1 "zsh /var/root/odyssey-device-deploy.sh"
 	echo "All Done!"
-	killall iproxy
+	killall tcprelay
+	rm $TMP
 fi
