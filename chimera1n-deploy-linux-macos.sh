@@ -19,7 +19,7 @@ echo "odysseyra1n deployment script"
 echo "(C) 2020, CoolStar. All Rights Reserved"
 
 echo ""
-echo "This Odyssey deploy script requires Python 2 to be installed."
+echo "This Odysseyra1n deploy script requires Python 2 to be installed."
 echo "Before you begin: This script includes experimental migration from older bootstraps to Procursus/Odyssey."
 echo "If you're already jailbroken, you can run this script on the checkra1n device."
 echo "If you'd rather start clean, please Reset System via the Loader app first."
