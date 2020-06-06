@@ -36,7 +36,7 @@ if [[ "${ARM}" = yes ]]; then
 	fi
 else
 	cd $TMP
-	curl -L -O https://github.com/M1staAwesome/Odyssey-bootstrap/raw/master/usbmux.pyc -O https://github.com/M1staAwesome/Odyssey-bootstrap/raw/master/usbmux.py -O https://github.com/M1staAwesome/Odyssey-bootstrap/raw/master/tcprelay.py
+	curl -L -O https://github.com/coolstar/Odyssey-bootstrap/raw/master/usbmux.pyc -O https://github.com/coolstar/Odyssey-bootstrap/raw/master/usbmux.py -O https://github.com/coolstar/Odyssey-bootstrap/raw/master/tcprelay.py
 	if [[ "${macOS}" = yes ]]; then 
 		python tcprelay.py 4444:44
 	elif [[ "${Linux}" = yes ]]; then
