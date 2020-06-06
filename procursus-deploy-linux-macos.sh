@@ -103,8 +103,8 @@ rm bootstrap*.tar*
 rm org.coolstar.sileo_1.8.1_iphoneos-arm.deb
 rm odyssey-device-deploy.sh
 rm migration 2>/dev/null
-apt update
-apt install org.coolstar.libhooker || echo "Unable to install libhooker. Open Sileo and do so manually"
+apt-get update
+apt-get install org.coolstar.libhooker || echo "Unable to install libhooker. Open Sileo and do so manually"
 EOF
 
 echo "Downloading Resources..."
