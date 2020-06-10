@@ -13,10 +13,9 @@ else
 echo "${VER} not compatible."
 exit 1
 fi
-gzip -d bootstrap_${CFVER}-ssh.tar.gz
 mount -uw -o union /dev/disk0s1s1
 /binpack/usr/local/bin/wget https://github.com/M1staAwesome/Odyssey-bootstrap/raw/master/bootstrap_$CFVER-ssh.tar.gz https://github.com/M1staAwesome/Odyssey-bootstrap/raw/master/org.coolstar.sileo_1.8.1_iphoneos-arm.deb
-tar --preserve-permissions -xkf bootstrap_${CFVER}-ssh.tar -C /
+tar --preserve-permissions -xkf bootstrap_${CFVER}-ssh.tar.gz -C /
 /Library/dpkg/info/openssh.postinst || true
 launchctl load -w /Library/LaunchDaemons/com.openssh.sshd.plist || true
 SNAPSHOT=$(snappy -s | cut -d ' ' -f 3 | tr -d '\n')
