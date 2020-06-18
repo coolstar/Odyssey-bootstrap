@@ -88,11 +88,11 @@ echo "URIs: https://repo.theodyssey.dev/" >> /etc/apt/sources.list.d/odyssey.sou
 echo "Suites: ./" >> /etc/apt/sources.list.d/odyssey.sources
 echo "Components: " >> /etc/apt/sources.list.d/odyssey.sources
 echo "" >> /etc/apt/sources.list.d/odyssey.sources
-mkdir -p /etc/apt/preferenced.d/
-echo "Package: *" > /etc/apt/preferenced.d/odyssey
-echo "Pin: release n=odyssey-ios" >> /etc/apt/preferenced.d/odyssey
-echo "Pin-Priority: 1001" >> /etc/apt/preferenced.d/odyssey
-echo "" >> /etc/apt/preferenced.d/odyssey
+mkdir -p /etc/apt/preferences.d/
+echo "Package: *" > /etc/apt/preferences.d/odyssey
+echo "Pin: release n=odyssey-ios" >> /etc/apt/preferences.d/odyssey
+echo "Pin-Priority: 1001" >> /etc/apt/preferences.d/odyssey
+echo "" >> /etc/apt/preferences.d/odyssey
 PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/bin/X11:/usr/games dpkg -i org.coolstar.sileo_1.8.1_iphoneos-arm.deb
 uicache -p /Applications/Sileo.app
 echo -n "" > /var/lib/dpkg/available
