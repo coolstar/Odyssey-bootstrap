@@ -114,5 +114,10 @@ else
 	echo "Default password is: alpine"
 	ssh -p4444 -o "StrictHostKeyChecking no" -o "UserKnownHostsFile=/dev/null" root@127.0.0.1 "zsh /var/root/odyssey-device-deploy.sh"
 	echo "All Done!"
-	killall iproxy
+	if ! command -v killall &> /dev/null
+	then
+		pkill -x iproxy
+	else
+		killall iproxy
+	fi
 fi
