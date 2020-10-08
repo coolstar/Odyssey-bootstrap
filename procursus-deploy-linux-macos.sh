@@ -90,7 +90,9 @@ echo 'echo "Package: *" > /etc/apt/preferences.d/odyssey' >> odyssey-device-depl
 echo 'echo "Pin: release n=odyssey-ios" >> /etc/apt/preferences.d/odyssey' >> odyssey-device-deploy.sh
 echo 'echo "Pin-Priority: 1001" >> /etc/apt/preferences.d/odyssey' >> odyssey-device-deploy.sh
 echo 'echo "" >> /etc/apt/preferences.d/odyssey' >> odyssey-device-deploy.sh
+echo 'if [[ $VER = 12.2 ]] || [[ $VER = 12.1* ]] || [[ $VER = 12.0* ]]; then' >> odyssey-device-deploy.sh
 echo 'PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/bin/X11:/usr/games dpkg -i org.swift.libswift_5.0-electra2_iphoneos-arm.deb' >> odyssey-device-deploy.sh
+echo 'fi' >> odyssey-device-deploy.sh
 echo 'PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/bin/X11:/usr/games dpkg -i org.coolstar.sileo_2.0.0b6_iphoneos-arm.deb' >> odyssey-device-deploy.sh
 echo 'uicache -p /Applications/Sileo.app' >> odyssey-device-deploy.sh
 echo 'echo -n "" > /var/lib/dpkg/available' >> odyssey-device-deploy.sh
