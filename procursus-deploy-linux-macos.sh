@@ -58,7 +58,7 @@ echo 'else' >> odyssey-device-deploy.sh
 echo 'echo "${VER} not compatible."' >> odyssey-device-deploy.sh
 echo 'exit 1' >> odyssey-device-deploy.sh
 echo 'fi' >> odyssey-device-deploy.sh
-echo 'gzip -d bootstrap_${CFVER}-ssh.tar.gz' >> odyssey-device-deploy.sh
+echo 'gzip -d bootstrap_${CFVER}.tar.gz' >> odyssey-device-deploy.sh
 echo 'mount -uw -o union /dev/disk0s1s1' >> odyssey-device-deploy.sh
 echo 'rm -rf /etc/profile' >> odyssey-device-deploy.sh
 echo 'rm -rf /etc/profile.d' >> odyssey-device-deploy.sh
@@ -70,7 +70,7 @@ echo 'rm -rf /etc/dpkg' >> odyssey-device-deploy.sh
 echo 'rm -rf /Library/dpkg' >> odyssey-device-deploy.sh
 echo 'rm -rf /var/cache' >> odyssey-device-deploy.sh
 echo 'rm -rf /var/lib' >> odyssey-device-deploy.sh
-echo 'tar --preserve-permissions -xkf bootstrap_${CFVER}-ssh.tar -C /' >> odyssey-device-deploy.sh
+echo 'tar --preserve-permissions -xkf bootstrap_${CFVER}.tar -C /' >> odyssey-device-deploy.sh
 echo '/Library/dpkg/info/openssh.postinst || true' >> odyssey-device-deploy.sh
 echo 'launchctl load -w /Library/LaunchDaemons/com.openssh.sshd.plist || true' >> odyssey-device-deploy.sh
 printf %s 'SNAPSHOT=$(snappy -s | ' >> odyssey-device-deploy.sh
@@ -106,12 +106,12 @@ echo 'rm org.swift.libswift_5.0-electra2_iphoneos-arm.deb' >> odyssey-device-dep
 echo 'rm odyssey-device-deploy.sh' >> odyssey-device-deploy.sh
 
 echo "Downloading Resources..."
-curl -L -O https://github.com/coolstar/odyssey-bootstrap/raw/master/bootstrap_1500-ssh.tar.gz -O https://github.com/coolstar/odyssey-bootstrap/raw/master/bootstrap_1600-ssh.tar.gz -O https://github.com/coolstar/odyssey-bootstrap/raw/master/bootstrap_1700-ssh.tar.gz -O https://github.com/coolstar/odyssey-bootstrap/raw/master/migration -O https://github.com/coolstar/odyssey-bootstrap/raw/master/org.coolstar.sileo_2.0.0b6_iphoneos-arm.deb -O https://github.com/coolstar/odyssey-bootstrap/raw/master/org.swift.libswift_5.0-electra2_iphoneos-arm.deb
+curl -L -O https://github.com/coolstar/odyssey-bootstrap/raw/master/bootstrap_1500.tar.gz -O https://github.com/coolstar/odyssey-bootstrap/raw/master/bootstrap_1600.tar.gz -O https://github.com/coolstar/odyssey-bootstrap/raw/master/bootstrap_1700.tar.gz -O https://github.com/coolstar/odyssey-bootstrap/raw/master/migration -O https://github.com/coolstar/odyssey-bootstrap/raw/master/org.coolstar.sileo_2.0.0b6_iphoneos-arm.deb -O https://github.com/coolstar/odyssey-bootstrap/raw/master/org.swift.libswift_5.0-electra2_iphoneos-arm.deb
 clear
 if [[ ! "${ARM}" = yes ]]; then
 	echo "Copying Files to your device"
 	echo "Default password is: alpine"
-	scp -P4444 -o "StrictHostKeyChecking no" -o "UserKnownHostsFile=/dev/null" bootstrap_1500-ssh.tar.gz bootstrap_1600-ssh.tar.gz bootstrap_1700-ssh.tar.gz migration org.coolstar.sileo_2.0.0b6_iphoneos-arm.deb org.swift.libswift_5.0-electra2_iphoneos-arm.deb odyssey-device-deploy.sh root@127.0.0.1:/var/root/
+	scp -P4444 -o "StrictHostKeyChecking no" -o "UserKnownHostsFile=/dev/null" bootstrap_1500.tar.gz bootstrap_1600.tar.gz bootstrap_1700.tar.gz migration org.coolstar.sileo_2.0.0b6_iphoneos-arm.deb org.swift.libswift_5.0-electra2_iphoneos-arm.deb odyssey-device-deploy.sh root@127.0.0.1:/var/root/
 	clear
 fi
 echo "Installing Procursus bootstrap and Sileo on your device"
