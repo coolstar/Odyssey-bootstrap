@@ -7,6 +7,9 @@ if [ $(uname) = "Darwin" ]; then
 	fi
 fi
 
+CURRENTDIR=$(pwd)
+ODYSSEYDIR=$(mktemp -d)
+
 echo "odysseyra1n deployment script"
 echo "(C) 2020, CoolStar. All Rights Reserved"
 
@@ -33,9 +36,8 @@ else
 		exit 1
 	fi
 fi
-rm -rf odyssey-tmp
-mkdir odyssey-tmp
-cd odyssey-tmp
+
+cd $ODYSSEYDIR
 
 echo '#!/bin/zsh' > odyssey-device-deploy.sh
 if [[ ! "${ARM}" = yes ]]; then
@@ -119,5 +121,7 @@ else
 	echo "Default password is: alpine"
 	ssh -p4444 -o "StrictHostKeyChecking no" -o "UserKnownHostsFile=/dev/null" root@127.0.0.1 "zsh /var/root/odyssey-device-deploy.sh"
 	echo "All Done!"
+	cd $CURRENTDIR
+	rm -rf $ODYSSEYDIR
 	killall iproxy
 fi
