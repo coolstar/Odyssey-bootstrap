@@ -24,10 +24,6 @@ if ! which curl >> /dev/null; then
 	exit 1
 fi
 if [[ "${ARM}" = yes ]]; then
-	if ! which zsh >> /dev/null; then
-		echo "Error: zsh not found"
-		exit 1
-	fi
 else
 	if which iproxy >> /dev/null; then
 		iproxy 4444 44 >> /dev/null 2>/dev/null &
