@@ -39,7 +39,7 @@ fi
 
 cd $ODYSSEYDIR
 
-echo '#!/bin/zsh' > odyssey-device-deploy.sh
+echo '#!/bin/bash' > odyssey-device-deploy.sh
 if [[ ! "${ARM}" = yes ]]; then
 	echo 'cd /var/root' >> odyssey-device-deploy.sh
 fi
@@ -116,10 +116,10 @@ if [[ ! "${ARM}" = yes ]]; then
 fi
 echo "Installing Procursus bootstrap and Sileo on your device"
 if [[ "${ARM}" = yes ]]; then
-	zsh ./odyssey-device-deploy.sh
+	bash ./odyssey-device-deploy.sh
 else
 	echo "Default password is: alpine"
-	ssh -p4444 -o "StrictHostKeyChecking no" -o "UserKnownHostsFile=/dev/null" root@127.0.0.1 "zsh /var/root/odyssey-device-deploy.sh"
+	ssh -p4444 -o "StrictHostKeyChecking no" -o "UserKnownHostsFile=/dev/null" root@127.0.0.1 "bash /var/root/odyssey-device-deploy.sh"
 	echo "All Done!"
 	cd $CURRENTDIR
 	rm -rf $ODYSSEYDIR
