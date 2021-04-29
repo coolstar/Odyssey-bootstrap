@@ -23,8 +23,7 @@ if ! which curl >> /dev/null; then
 	echo "Error: curl not found"
 	exit 1
 fi
-if [[ "${ARM}" = yes ]]; then
-else
+if [[ "${ARM}" != yes ]]; then
 	if which iproxy >> /dev/null; then
 		iproxy 4444 44 >> /dev/null 2>/dev/null &
 	else
