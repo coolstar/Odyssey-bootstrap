@@ -45,11 +45,11 @@ echo '/odyssey/migration' >> odyssey-device-deploy.sh
 echo 'rm -rf /odyssey' >> odyssey-device-deploy.sh
 echo 'else' >> odyssey-device-deploy.sh
 echo 'VER=$(/binpack/usr/bin/plutil -key ProductVersion /System/Library/CoreServices/SystemVersion.plist)' >> odyssey-device-deploy.sh
-echo 'if [[ "${VER%.*}" -ge 12 ]] && [[ "${VER%.*}" -lt 13 ]]; then' >> odyssey-device-deploy.sh
+echo 'if [[ "${VER%%.*}" -ge 12 ]] && [[ "${VER%%.*}" -lt 13 ]]; then' >> odyssey-device-deploy.sh
 echo 'CFVER=1500' >> odyssey-device-deploy.sh
-echo 'elif [[ "${VER%.*}" -ge 13 ]]; then' >> odyssey-device-deploy.sh
+echo 'elif [[ "${VER%%.*}" -ge 13 ]]; then' >> odyssey-device-deploy.sh
 echo 'CFVER=1600' >> odyssey-device-deploy.sh
-echo 'elif [[ "${VER%.*}" -ge 14 ]]; then' >> odyssey-device-deploy.sh
+echo 'elif [[ "${VER%%.*}" -ge 14 ]]; then' >> odyssey-device-deploy.sh
 echo 'CFVER=1700' >> odyssey-device-deploy.sh
 echo 'else' >> odyssey-device-deploy.sh
 echo 'echo "${VER} not compatible."' >> odyssey-device-deploy.sh
