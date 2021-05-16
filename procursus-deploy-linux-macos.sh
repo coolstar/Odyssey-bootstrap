@@ -49,9 +49,9 @@ fi
 VER=$(/binpack/usr/bin/plutil -key ProductVersion /System/Library/CoreServices/SystemVersion.plist)
 if [[ "${VER%%.*}" -ge 12 ]] && [[ "${VER%%.*}" -lt 13 ]]; then
     CFVER=1500
-elif [[ "${VER%%.*}" -ge 13 ]]; then
+elif [[ "${VER%%.*}" -ge 13 ]] && [[ "${VER%%.*}" -lt 14 ]]; then
     CFVER=1600
-elif [[ "${VER%%.*}" -ge 14 ]]; then
+elif [[ "${VER%%.*}" -ge 14 ]] && [[ "${VER%%.*}" -lt 15 ]]; then
     CFVER=1700
 else
     echo "${VER} not compatible."
