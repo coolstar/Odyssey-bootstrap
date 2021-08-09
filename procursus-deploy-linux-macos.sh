@@ -1,6 +1,6 @@
 #!/bin/sh
 if [ "$(uname)" = "Darwin" ]; then
-	if [ "$(uname -m)" != "arm" ] || [ "$(uname -m)" != "arm64" ]; then
+	if [ "$(uname -m)" != "arm" ] && [ "$(uname -m)" != "arm64" ] && [ "$(uname -m)" != "x86_64" ]; then
 		echo "It's recommended that this script be ran on macOS/Linux with a non-bootstrapped iOS device running checkra1n attached."
 		echo "Press enter to continue"
 		read -r REPLY
