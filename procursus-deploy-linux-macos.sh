@@ -11,11 +11,17 @@ fi
 CURRENTDIR=$(pwd)
 ODYSSEYDIR=$(mktemp -d)
 
-echo "Odysseyra1n Installation Script"
-echo "(C) 2021, CoolStar. All Rights Reserved"
-echo ""
-echo "Before you begin: If you're currently jailbroken with a different bootstrap installed, you will need to Reset System via the Loader app before running this script."
-echo "Press enter to continue."
+cat << "EOF"
+Odysseyra1n Installation Script
+Copyright (C) 2021, CoolStar. All Rights Reserved
+
+Before you begin:
+If you're currently jailbroken with a different bootstrap
+installed, you will need to Reset System via the Loader app
+before running this script.
+
+Press enter to continue.
+EOF
 read -r REPLY
 
 if ! which curl > /dev/null; then
