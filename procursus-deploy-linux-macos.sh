@@ -71,6 +71,7 @@ if [[ $VER = 12.1* ]] || [[ $VER = 12.0* ]]; then
 fi
 echo "(4) Installing Sileo..."
 dpkg -i org.coolstar.sileo_2.2.3_iphoneos-arm.deb > /dev/null
+uicache -p /Applications/Sileo.app
 mkdir -p /etc/apt/sources.list.d /etc/apt/preferences.d
 {
     echo "Types: deb"
