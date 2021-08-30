@@ -77,7 +77,6 @@ if [[ $VER = 12.1* ]] || [[ $VER = 12.0* ]]; then
 fi
 echo "(4) Installing Sileo and upgrading Procursus packages..."
 dpkg -i org.coolstar.sileo_2.2.3_iphoneos-arm.deb > /dev/null
-uicache -p /Applications/Sileo.app
 mkdir -p /etc/apt/sources.list.d /etc/apt/preferences.d
 {
     echo "Types: deb"
@@ -91,6 +90,7 @@ touch /.mount_rw
 touch /.installed_odyssey
 apt-get update -o Acquire::AllowInsecureRepositories=true
 apt-get dist-upgrade -y --allow-downgrades --allow-unauthenticated
+uicache -p /Applications/Sileo.app
 uicache -p /var/binpack/Applications/loader.app
 rm ./bootstrap* ./*.deb odysseyra1n-install.bash
 echo "Done!"
