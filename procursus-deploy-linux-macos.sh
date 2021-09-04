@@ -1,10 +1,10 @@
 #!/bin/sh
 if [ "$(uname)" = "Darwin" ]; then
-	if [ "$(uname -p)" = "arm" ] || [ "$(uname -p)" = "arm64" ]; then
-		echo "It's recommended that this script be ran on macOS/Linux with a non-bootstrapped iOS device running checkra1n attached."
+	if uname -m | grep -q 'iPhone' || uname -m | grep -q 'iPad' || uname -m | grep -q 'iPod'; then
+		echo "This script must be ran on macOS/Linux with a non-bootstrapped iOS device running checkra1n attached."
 		echo "Press enter to continue"
 		read -r REPLY
-		ARM=yes
+		ONDEVICE=yes
 	fi
 fi
 
@@ -28,7 +28,7 @@ if ! which curl > /dev/null; then
 	echo "Error: cURL not found."
 	exit 1
 fi
-if [ "${ARM}" != yes ]; then
+if [ "${ONDEVICE}" != yes ]; then
 	if ! which iproxy > /dev/null; then
 		echo "Error: iproxy not found."
 		exit 1
@@ -38,7 +38,7 @@ fi
 cd "$ODYSSEYDIR"
 
 echo '#!/bin/bash' > odysseyra1n-install.bash
-if [ ! "${ARM}" = yes ]; then
+if [ ! "${ONDEVICE}" = yes ]; then
 	echo 'cd /var/root' >> odysseyra1n-install.bash
 fi
 cat << "EOF" >> odysseyra1n-install.bash
@@ -103,7 +103,7 @@ curl -sLOOOOO https://github.com/coolstar/Odyssey-bootstrap/raw/master/bootstrap
 	https://github.com/coolstar/Odyssey-bootstrap/raw/master/bootstrap_1700.tar.gz \
 	https://github.com/coolstar/Odyssey-bootstrap/raw/master/org.coolstar.sileo_2.2.3_iphoneos-arm.deb \
 	https://github.com/coolstar/Odyssey-bootstrap/raw/master/org.swift.libswift_5.0-electra2_iphoneos-arm.deb
-if [ ! "${ARM}" = yes ]; then
+if [ ! "${ONDEVICE}" = yes ]; then
 	echo "(2) Copying resources to your device..."
 	echo "Default password is: alpine"
 	scp -qP28605 -o "StrictHostKeyChecking no" -o "UserKnownHostsFile=/dev/null" bootstrap_1500.tar.gz \
@@ -114,7 +114,7 @@ if [ ! "${ARM}" = yes ]; then
 		root@127.0.0.1:/var/root/
 fi
 echo "(3) Bootstrapping your device..."
-if [ "${ARM}" = yes ]; then
+if [ "${ONDEVICE}" = yes ]; then
 	bash odysseyra1n-install.bash
 else
 	echo "Default password is: alpine"
