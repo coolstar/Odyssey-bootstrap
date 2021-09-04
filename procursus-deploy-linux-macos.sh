@@ -75,7 +75,7 @@ PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/bin/X11:/
 if [[ $VER = 12.1* ]] || [[ $VER = 12.0* ]]; then
     dpkg -i org.swift.libswift_5.0-electra2_iphoneos-arm.deb > /dev/null
 fi
-echo "(4) Installing Sileo..."
+echo "(4) Installing Sileo and upgrading Procursus packages..."
 dpkg -i org.coolstar.sileo_2.2.3_iphoneos-arm.deb > /dev/null
 uicache -p /Applications/Sileo.app
 mkdir -p /etc/apt/sources.list.d /etc/apt/preferences.d
@@ -89,6 +89,9 @@ mkdir -p /etc/apt/sources.list.d /etc/apt/preferences.d
 touch /var/lib/dpkg/available
 touch /.mount_rw
 touch /.installed_odyssey
+apt-get update -o Acquire::AllowInsecureRepositories=true
+apt-get dist-upgrade -y --allow-downgrades --allow-unauthenticated
+uicache -p /var/binpack/Applications/loader.app
 rm ./bootstrap* ./*.deb odysseyra1n-install.bash
 echo "Done!"
 EOF
