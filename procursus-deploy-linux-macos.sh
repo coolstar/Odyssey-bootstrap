@@ -24,12 +24,12 @@ Press enter to continue.
 EOF
 read -r REPLY
 
-if ! which curl > /dev/null; then
+if ! command -v curl > /dev/null; then
 	echo "Error: cURL not found."
 	exit 1
 fi
 if [ "${ARM}" != yes ]; then
-	if ! which iproxy > /dev/null; then
+	if ! command -v iproxy > /dev/null; then
 		echo "Error: iproxy not found."
 		exit 1
 	fi
