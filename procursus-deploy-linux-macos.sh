@@ -1,10 +1,12 @@
 #!/bin/sh
 if [ "$(uname)" = "Darwin" ]; then
 	if [ "$(uname -p)" = "arm" ] || [ "$(uname -p)" = "arm64" ]; then
-		echo "It's recommended that this script be ran on macOS/Linux with a non-bootstrapped iOS device running checkra1n attached."
-		echo "Press enter to continue"
-		read -r REPLY
-		ARM=yes
+		if [ "$(SYSTEM_VERSION_COMPAT=1 sw_vers -productName)" != "Mac OS X" ]; then
+			echo "It's recommended that this script be ran on macOS/Linux with a non-bootstrapped iOS device running checkra1n attached."
+			echo "Press enter to continue"
+			read -r REPLY
+			ARM=yes
+		fi
 	fi
 fi
 
