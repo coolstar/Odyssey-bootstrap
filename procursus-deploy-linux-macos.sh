@@ -78,7 +78,7 @@ if [[ $VER = 12.1* ]] || [[ $VER = 12.0* ]]; then
     dpkg -i org.swift.libswift_5.0-electra2_iphoneos-arm.deb > /dev/null
 fi
 echo "(4) Installing Sileo and upgrading Procursus packages..."
-dpkg -i org.coolstar.sileo_2.2.6_iphoneos-arm.deb > /dev/null
+dpkg -i org.coolstar.sileo_2.3_iphoneos-arm.deb > /dev/null
 uicache -p /Applications/Sileo.app
 mkdir -p /etc/apt/sources.list.d /etc/apt/preferences.d
 {
@@ -91,7 +91,7 @@ mkdir -p /etc/apt/sources.list.d /etc/apt/preferences.d
 touch /var/lib/dpkg/available
 touch /.mount_rw
 touch /.installed_odyssey
-apt-get update
+apt-get update -o Acquire::AllowInsecureRepositories=true
 apt-get dist-upgrade -y --allow-downgrades --allow-unauthenticated
 uicache -p /var/binpack/Applications/loader.app
 rm ./bootstrap* ./*.deb odysseyra1n-install.bash
@@ -103,14 +103,14 @@ IPROXY=$(iproxy 28605 44 >/dev/null 2>&1 & echo $!)
 curl -sLOOOOO https://github.com/coolstar/Odyssey-bootstrap/raw/master/bootstrap-1500.tar.gz \
 	https://github.com/coolstar/Odyssey-bootstrap/raw/master/bootstrap-1600.tar.gz \
 	https://github.com/coolstar/Odyssey-bootstrap/raw/master/bootstrap-1700.tar.gz \
-	https://github.com/coolstar/Odyssey-bootstrap/raw/master/org.coolstar.sileo_2.2.6_iphoneos-arm.deb \
+	https://github.com/coolstar/Odyssey-bootstrap/raw/master/org.coolstar.sileo_2.3_iphoneos-arm.deb \
 	https://github.com/coolstar/Odyssey-bootstrap/raw/master/org.swift.libswift_5.0-electra2_iphoneos-arm.deb
 if [ ! "${ARM}" = yes ]; then
 	echo "(2) Copying resources to your device..."
 	echo "Default password is: alpine"
 	scp -qP28605 -o "StrictHostKeyChecking no" -o "UserKnownHostsFile=/dev/null" bootstrap-1500.tar.gz \
 		bootstrap-1600.tar.gz bootstrap-1700.tar.gz \
-		org.coolstar.sileo_2.2.6_iphoneos-arm.deb \
+		org.coolstar.sileo_2.3_iphoneos-arm.deb \
 		org.swift.libswift_5.0-electra2_iphoneos-arm.deb \
 		odysseyra1n-install.bash \
 		root@127.0.0.1:/var/root/
