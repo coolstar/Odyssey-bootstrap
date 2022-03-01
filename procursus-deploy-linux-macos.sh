@@ -74,7 +74,7 @@ SNAPSHOT=$(snappy -s | cut -d ' ' -f 3 | tr -d '\n')
 snappy -f / -r "$SNAPSHOT" -t orig-fs > /dev/null 2>&1
 /prep_bootstrap.sh
 if [[ $CFVER = "1500" ]]; then
-	/usr/libexec/firmware-wrapper
+	/usr/libexec/firmware
 fi
 PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/bin/X11:/usr/games
 if [[ $VER = 12.1* ]] || [[ $VER = 12.0* ]]; then
