@@ -67,13 +67,12 @@ else
 fi
 mount -o rw,union,update /dev/disk0s1s1
 rm -rf /etc/{alternatives,apt,ssl,ssh,dpkg,profile{,.d}} /Library/dpkg /var/{cache,lib}
-gzip -d bootstrap-${CFVER}.tar.gz
-tar --preserve-permissions -xkf bootstrap-${CFVER}.tar -C /
+gzip -d bootstrap_${CFVER}.tar.gz
+tar --preserve-permissions -xkf bootstrap_${CFVER}.tar -C /
 SNAPSHOT=$(snappy -s | cut -d ' ' -f 3 | tr -d '\n')
 
 snappy -f / -r "$SNAPSHOT" -t orig-fs > /dev/null 2>&1
 /prep_bootstrap.sh
-/usr/libexec/firmware
 PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/bin/X11:/usr/games
 if [[ $VER = 12.1* ]] || [[ $VER = 12.0* ]]; then
     dpkg -i org.swift.libswift_5.0-electra2_iphoneos-arm.deb > /dev/null
@@ -101,16 +100,16 @@ EOF
 
 echo "(1) Downloading resources..."
 IPROXY=$(iproxy 28605 44 >/dev/null 2>&1 & echo $!)
-curl -sLOOOOO https://github.com/coolstar/Odyssey-bootstrap/raw/master/bootstrap-1500.tar.gz \
-	https://github.com/coolstar/Odyssey-bootstrap/raw/master/bootstrap-1600.tar.gz \
-	https://github.com/coolstar/Odyssey-bootstrap/raw/master/bootstrap-1700.tar.gz \
+curl -sLOOOOO https://github.com/coolstar/Odyssey-bootstrap/raw/master/bootstrap_1500.tar.gz \
+	https://github.com/coolstar/Odyssey-bootstrap/raw/master/bootstrap_1600.tar.gz \
+	https://github.com/coolstar/Odyssey-bootstrap/raw/master/bootstrap_1700.tar.gz \
 	https://github.com/coolstar/Odyssey-bootstrap/raw/master/org.coolstar.sileo_2.3_iphoneos-arm.deb \
 	https://github.com/coolstar/Odyssey-bootstrap/raw/master/org.swift.libswift_5.0-electra2_iphoneos-arm.deb
 if [ ! "${ARM}" = yes ]; then
 	echo "(2) Copying resources to your device..."
 	echo "Default password is: alpine"
-	scp -qP28605 -o "StrictHostKeyChecking no" -o "UserKnownHostsFile=/dev/null" bootstrap-1500.tar.gz \
-		bootstrap-1600.tar.gz bootstrap-1700.tar.gz \
+	scp -qP28605 -o "StrictHostKeyChecking no" -o "UserKnownHostsFile=/dev/null" bootstrap_1500.tar.gz \
+		bootstrap_1600.tar.gz bootstrap_1700.tar.gz \
 		org.coolstar.sileo_2.3_iphoneos-arm.deb \
 		org.swift.libswift_5.0-electra2_iphoneos-arm.deb \
 		odysseyra1n-install.bash \
