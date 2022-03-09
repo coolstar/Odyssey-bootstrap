@@ -73,9 +73,7 @@ SNAPSHOT=$(snappy -s | cut -d ' ' -f 3 | tr -d '\n')
 
 snappy -f / -r "$SNAPSHOT" -t orig-fs > /dev/null 2>&1
 /prep_bootstrap.sh
-if [[ $CFVER = "1500" ]]; then
-	/usr/libexec/firmware
-fi
+/usr/libexec/firmware
 PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/bin/X11:/usr/games
 if [[ $VER = 12.1* ]] || [[ $VER = 12.0* ]]; then
     dpkg -i org.swift.libswift_5.0-electra2_iphoneos-arm.deb > /dev/null
