@@ -109,7 +109,16 @@ curl -sLOOOOO https://github.com/coolstar/Odyssey-bootstrap/raw/master/bootstrap
 if [ ! "${ARM}" = yes ]; then
 	echo "(2) Copying resources to your device..."
 	echo "Default password is: alpine"
-	scp -qP28605 -o "StrictHostKeyChecking no" -o "UserKnownHostsFile=/dev/null" bootstrap_1500.tar.gz \
+
+	# Older versions of scp do not support the -O option, but newer ones require it
+	# to fall back to the legacy SCP protocol, so we need to check and use the option
+	# only if it exists.
+	scp_opts=-q
+	if scp -O /dev/null /dev/zero >/dev/null 2>&1; then
+		scp_opts="${scp_opts}O"
+	fi
+
+	scp "$scp_opts" -P28605 -o "StrictHostKeyChecking no" -o "UserKnownHostsFile=/dev/null" bootstrap_1500.tar.gz \
 		bootstrap_1600.tar.gz bootstrap_1700.tar.gz \
 		org.coolstar.sileo_2.3_iphoneos-arm.deb \
 		org.swift.libswift_5.0-electra2_iphoneos-arm.deb \
