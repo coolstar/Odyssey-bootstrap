@@ -69,13 +69,15 @@ else
     echo "${VER} not compatible."
     exit 1
 fi
+
+SNAPSHOT=$(snappy -s | cut -d ' ' -f 3 | tr -d '\n')
+snappy -f / -r "$SNAPSHOT" -t orig-fs > /dev/null 2>&1
+
 mount -o rw,union,update /dev/disk0s1s1
 rm -rf /etc/{alternatives,apt,ssl,ssh,dpkg,profile{,.d}} /Library/dpkg /var/{cache,lib}
 gzip -d bootstrap_${CFVER}.tar.gz
 tar --preserve-permissions -xkf bootstrap_${CFVER}.tar -C /
-SNAPSHOT=$(snappy -s | cut -d ' ' -f 3 | tr -d '\n')
 
-snappy -f / -r "$SNAPSHOT" -t orig-fs > /dev/null 2>&1
 /prep_bootstrap.sh
 /usr/libexec/firmware
 PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/bin/X11:/usr/games
