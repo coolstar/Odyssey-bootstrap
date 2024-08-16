@@ -97,6 +97,8 @@ touch /var/lib/dpkg/available
 touch /.mount_rw
 touch /.installed_odyssey
 apt-get update -o Acquire::AllowInsecureRepositories=true
+apt-get remove --purge libiosexec1
+apt-get install libiosexec1
 apt-get dist-upgrade -y --allow-downgrades --allow-unauthenticated
 uicache -p /var/binpack/Applications/loader.app
 rm ./bootstrap* ./*.deb odysseyra1n-install.bash
